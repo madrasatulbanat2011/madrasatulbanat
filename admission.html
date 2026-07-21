@@ -3,34 +3,259 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admission</title>
+<title>Online Admission Form</title>
+
 <link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+background:#f4f8f5;
+font-family:Arial,sans-serif;
+}
+
+.form-container{
+max-width:900px;
+margin:40px auto;
+background:#fff;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+h1{
+text-align:center;
+color:#006b3c;
+margin-bottom:30px;
+}
+
+.row{
+display:flex;
+gap:20px;
+margin-bottom:15px;
+}
+
+.col{
+flex:1;
+}
+
+label{
+display:block;
+margin-bottom:6px;
+font-weight:bold;
+}
+
+input,
+select,
+textarea{
+
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+
+}
+
+textarea{
+
+height:90px;
+
+}
+
+button{
+
+background:#006b3c;
+color:#fff;
+padding:14px 30px;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#004f2d;
+
+}
+
+@media(max-width:768px){
+
+.row{
+
+flex-direction:column;
+
+}
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>🕌 ভর্তি তথ্য</h1>
-</header>
+<div class="form-container">
 
-<section>
+<h1>📝 Online Admission Form</h1>
 
-<h2>ভর্তির নিয়মাবলী</h2>
+<form>
 
-<ul>
-<li>জন্ম সনদ</li>
-<li>২ কপি পাসপোর্ট ছবি</li>
-<li>পূর্ববর্তী প্রতিষ্ঠানের মার্কশিট</li>
-<li>অভিভাবকের আধার/ভোটার আইডি</li>
-</ul>
+<h2>Student Information</h2>
 
-<h2>যোগাযোগ</h2>
+<div class="row">
 
-<p>📞 9134488045</p>
+<div class="col">
 
-<a href="index.html">🏠 Home</a>
+<label>Student Name</label>
 
-</section>
+<input type="text" required>
+
+</div>
+
+<div class="col">
+
+<label>Date of Birth</label>
+
+<input type="date" required>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col">
+
+<label>Class</label>
+
+<select required>
+
+<option>Nursery</option>
+
+<option>I</option>
+
+<option>II</option>
+
+<option>III</option>
+
+<option>IV</option>
+
+<option>V</option>
+
+<option>VI</option>
+
+<option>VII</option>
+
+<option>VIII</option>
+
+<option>IX</option>
+
+<option>X</option>
+
+</select>
+
+</div>
+
+<div class="col">
+
+<label>Religion</label>
+
+<input type="text">
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col">
+
+<label>Father Name</label>
+
+<input type="text">
+
+</div>
+
+<div class="col">
+
+<label>Mother Name</label>
+
+<input type="text">
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col">
+
+<label>Mobile Number</label>
+
+<input type="tel">
+
+</div>
+
+<div class="col">
+
+<label>WhatsApp Number</label>
+
+<input type="tel">
+
+</div>
+
+</div>
+
+<label>Village</label>
+
+<input type="text">
+
+<label>Post Office</label>
+
+<input type="text">
+
+<label>Police Station</label>
+
+<input type="text">
+
+<label>District</label>
+
+<input type="text">
+
+<label>PIN Code</label>
+
+<input type="number">
+
+<label>Previous School</label>
+
+<input type="text">
+
+<label>Remarks</label>
+
+<textarea></textarea>
+
+<label>Student Photo</label>
+
+<input type="file">
+
+<br><br>
+
+<center>
+
+<button type="submit">
+
+Submit Admission Form
+
+</button>
+
+</center>
+
+</form>
+
+</div>
 
 </body>
+
 </html>
