@@ -1,8 +1,10 @@
 import { db } from "./firebase.js";
 
 import {
-  collection,
-  getDocs
+collection,
+getDocs,
+query,
+where
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 async function loadMarksheet() {
@@ -42,7 +44,26 @@ async function loadMarksheet() {
 
       document.getElementById("grade").textContent = grade;
     }
+const studentQuery = query(
+collection(db,"students"),
+where("__name__","==",studentId)
+);
 
+const studentSnapshot = await getDocs(studentQuery);
+
+studentSnapshot.forEach((studentDoc)=>{
+
+const s = studentDoc.data();
+
+document.getElementById("studentName").textContent = s.studentName;
+
+document.getElementById("fatherName").textContent = s.fatherName;
+
+document.getElementById("motherName").textContent = s.motherName;
+
+document.getElementById("class").textContent = s.class;
+
+});
   });
 
 }
