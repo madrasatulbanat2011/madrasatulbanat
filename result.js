@@ -2,6 +2,7 @@ import { db } from "./firebase.js";
 
 import {
   collection,
+  getDocs,
   addDoc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
@@ -46,3 +47,25 @@ async function saveResult() {
 
   document.querySelectorAll("input").forEach(input => input.value = "");
 }
+async function loadStudents(){
+
+const studentSelect =
+document.getElementById("studentId");
+
+const querySnapshot =
+await getDocs(collection(db,"students"));
+
+querySnapshot.forEach((doc)=>{
+
+const s = doc.data();
+
+studentSelect.innerHTML +=
+`<option value="${doc.id}">
+${s.studentName}
+</option>`;
+
+});
+
+}
+
+loadStudents();
