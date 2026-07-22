@@ -8,46 +8,132 @@
 
 <style>
 
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:"Times New Roman",serif;
+}
+
 body{
-font-family:Arial,sans-serif;
-background:#f4f4f4;
+background:#e9ecef;
 padding:20px;
 }
 
 .container{
-max-width:800px;
+width:210mm;
+min-height:297mm;
 margin:auto;
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px gray;
+background:#fff;
+border:4px solid #000;
+padding:25px;
 }
 
-h1,h2{
+.header{
 text-align:center;
-color:green;
+border-bottom:3px solid green;
+padding-bottom:15px;
+margin-bottom:20px;
+}
+
+.logo{
+width:90px;
+height:90px;
+display:block;
+margin:auto;
+margin-bottom:10px;
+}
+
+.header h1{
+color:#006400;
+font-size:30px;
+margin-bottom:5px;
+}
+
+.header h2{
+font-size:20px;
+margin-bottom:5px;
+}
+
+.header p{
+font-size:15px;
+margin:3px 0;
+}
+
+.title{
+margin-top:15px;
+font-size:28px;
+font-weight:bold;
+text-align:center;
+text-decoration:underline;
+}
+
+.student-info{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin:25px 0;
+font-size:18px;
 }
 
 table{
 width:100%;
 border-collapse:collapse;
-margin-top:20px;
+margin-top:10px;
 }
 
-table th,table td{
+th,td{
 border:1px solid #000;
-padding:8px;
+padding:10px;
+text-align:center;
+font-size:17px;
+}
+
+th{
+background:#0b7a3b;
+color:white;
+}
+
+.result-box{
+margin-top:20px;
+font-size:18px;
+line-height:35px;
+}
+
+.signature{
+margin-top:70px;
+display:flex;
+justify-content:space-between;
 text-align:center;
 }
 
+.signature div{
+width:30%;
+}
+
+.signature hr{
+border:1px solid #000;
+margin-bottom:8px;
+}
+
+@media print{
+
+body{
+background:white;
+padding:0;
+}
+
 button{
-margin-top:20px;
-padding:12px 25px;
-background:green;
-color:white;
+display:none;
+}
+
+.container{
 border:none;
-border-radius:5px;
-cursor:pointer;
+width:100%;
+margin:0;
+padding:10mm;
+}
+
 }
 
 </style>
@@ -58,15 +144,54 @@ cursor:pointer;
 
 <div class="container" id="marksheet">
 
+<div class="header">
+
+<img src="images/logo.png" class="logo" alt="Logo">
+
 <h1>Barbakpur Madrasatul Banat</h1>
 
-<h2>Student Marksheet</h2>
+<h2>Education & Social Welfare Trust</h2>
 
-<p><b>Student ID :</b> <span id="studentId"></span></p>
+<p><b>Established :</b> 2011</p>
 
-<p><b>Exam :</b> <span id="exam"></span></p>
+<p>
+Barbakpur, Karimpur, Nadia,
+West Bengal - 741165
+</p>
 
-<table>
+<p>
+📞 +91 9134488045
+&nbsp;&nbsp;&nbsp;
+✉ madrashatulbanat2011@gmail.com
+</p>
+
+<div class="title">
+ACADEMIC MARKSHEET
+</div>
+
+</div>
+
+<div class="student-info">
+
+<p><b>Student Name :</b>
+<span id="studentName"></span></p>
+
+<p><b>Student ID :</b>
+<span id="studentId"></span></p>
+
+<p><b>Father's Name :</b>
+<span id="fatherName"></span></p>
+
+<p><b>Mother's Name :</b>
+<span id="motherName"></span></p>
+
+<p><b>Class :</b>
+<span id="class"></span></p>
+
+<p><b>Exam :</b>
+<span id="exam"></span></p>
+
+  <table>
 
 <tr>
 <th>Subject</th>
@@ -74,15 +199,10 @@ cursor:pointer;
 </tr>
 
 <tr><td>Bangla</td><td id="bangla"></td></tr>
-
 <tr><td>English</td><td id="english"></td></tr>
-
 <tr><td>Mathematics</td><td id="math"></td></tr>
-
 <tr><td>Science</td><td id="science"></td></tr>
-
 <tr><td>History</td><td id="history"></td></tr>
-
 <tr><td>Geography</td><td id="geography"></td></tr>
 
 <tr>
@@ -102,10 +222,28 @@ cursor:pointer;
 
 </table>
 
-<button onclick="window.print()">
-Print Marksheet
-</button>
+<div class="signature">
 
+<div>
+<hr>
+Class Teacher
+</div>
+
+<div>
+<hr>
+Headmaster
+</div>
+
+<div>
+<hr>
+Institute Seal
+</div>
+
+</div>
+
+<button onclick="window.print()">
+🖨 Print Marksheet
+</button>
 </div>
 
 <script type="module" src="marksheet.js"></script>
