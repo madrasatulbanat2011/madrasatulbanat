@@ -24,9 +24,9 @@ async function loadStudents() {
         <td>${s.mobile}</td>
         <td>${s.village}</td>
         <td>
-          <button onclick="alert('এই ফিচার পরের ধাপে যোগ করব')">
-            View
-          </button>
+          <button onclick="viewStudent('${doc.id}')">
+    View
+</button>
         </td>
       </tr>
     `;
@@ -36,3 +36,10 @@ async function loadStudents() {
 }
 
 loadStudents();
+window.viewStudent = async function(id){
+
+    localStorage.setItem("studentId", id);
+
+    window.location.href = "student-profile.html";
+
+}
