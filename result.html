@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Result Management</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#f4f4f4;
+margin:0;
+padding:20px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+h2{
+text-align:center;
+color:green;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:5px;
+box-sizing:border-box;
+}
+
+button{
+width:100%;
+padding:12px;
+background:green;
+color:white;
+border:none;
+border-radius:5px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:darkgreen;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Student Result Management</h2>
+
+<input type="text" id="studentId" placeholder="Student ID">
+
+<input type="text" id="exam" placeholder="Exam Name">
+
+<input type="number" id="bangla" placeholder="Bangla">
+
+<input type="number" id="english" placeholder="English">
+
+<input type="number" id="math" placeholder="Mathematics">
+
+<input type="number" id="science" placeholder="Science">
+
+<input type="number" id="history" placeholder="History">
+
+<input type="number" id="geography" placeholder="Geography">
+
+<button id="saveResult">
+Save Result
+</button>
+
+</div>
+
+<script type="module" src="result.js"></script>
+
+</body>
+</html>
