@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Marksheet</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#f4f4f4;
+padding:20px;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+
+h1,h2{
+text-align:center;
+color:green;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+table th,table td{
+border:1px solid #000;
+padding:8px;
+text-align:center;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+background:green;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container" id="marksheet">
+
+<h1>Barbakpur Madrasatul Banat</h1>
+
+<h2>Student Marksheet</h2>
+
+<p><b>Student ID :</b> <span id="studentId"></span></p>
+
+<p><b>Exam :</b> <span id="exam"></span></p>
+
+<table>
+
+<tr>
+<th>Subject</th>
+<th>Marks</th>
+</tr>
+
+<tr><td>Bangla</td><td id="bangla"></td></tr>
+
+<tr><td>English</td><td id="english"></td></tr>
+
+<tr><td>Mathematics</td><td id="math"></td></tr>
+
+<tr><td>Science</td><td id="science"></td></tr>
+
+<tr><td>History</td><td id="history"></td></tr>
+
+<tr><td>Geography</td><td id="geography"></td></tr>
+
+<tr>
+<th>Total</th>
+<th id="total"></th>
+</tr>
+
+<tr>
+<th>Percentage</th>
+<th id="percentage"></th>
+</tr>
+
+<tr>
+<th>Grade</th>
+<th id="grade"></th>
+</tr>
+
+</table>
+
+<button onclick="window.print()">
+Print Marksheet
+</button>
+
+</div>
+
+<script type="module" src="marksheet.js"></script>
+
+</body>
+</html>
