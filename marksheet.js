@@ -1,0 +1,50 @@
+import { db } from "./firebase.js";
+
+import {
+  collection,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+async function loadMarksheet() {
+
+  const params = new URLSearchParams(window.location.search);
+  const studentId = params.get("studentId");
+
+  const querySnapshot = await getDocs(collection(db, "results"));
+
+  querySnapshot.forEach((doc) => {
+
+    const r = doc.data();
+
+    if (r.studentId === studentId) {
+
+      document.getElementById("studentId").textContent = r.studentId;
+      document.getElementById("exam").textContent = r.exam;
+
+      document.getElementById("bangla").textContent = r.bangla;
+      document.getElementById("english").textContent = r.english;
+      document.getElementById("math").textContent = r.math;
+      document.getElementById("science").textContent = r.science;
+      document.getElementById("history").textContent = r.history;
+      document.getElementById("geography").textContent = r.geography;
+
+      document.getElementById("total").textContent = r.total;
+      document.getElementById("percentage").textContent =
+        r.percentage.toFixed(2) + "%";
+
+      let grade = "F";
+
+      if (r.percentage >= 80) grade = "A+";
+      else if (r.percentage >= 70) grade = "A";
+      else if (r.percentage >= 60) grade = "B";
+      else if (r.percentage >= 50) grade = "C";
+      else if (r.percentage >= 40) grade = "D";
+
+      document.getElementById("grade").textContent = grade;
+    }
+
+  });
+
+}
+
+loadMarksheet();
