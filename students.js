@@ -2,7 +2,9 @@ import { db } from "./firebase.js";
 
 import {
   collection,
-  getDocs
+  getDocs,
+  doc,
+  getDoc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const table = document.getElementById("studentTable");
@@ -37,10 +39,22 @@ async function loadStudents() {
 
 loadStudents();
 
-  window.viewStudent = function(id){
+  window.viewStudent = async function(id){
 
-    localStorage.setItem("studentId", id);
+    const ref = doc(db,"students",id);
 
-    window.location.href = "student-profile.html";
+    const snap = await getDoc(ref);
 
-  }  
+    if(!snap.exists()){
+        alert("Student not found");
+        return;
+    }
+
+    localStorage.setItem(
+        "studentData",
+        JSON.stringify(snap.data())
+    );
+
+    window.location.href="student-profile.html";
+
+}
