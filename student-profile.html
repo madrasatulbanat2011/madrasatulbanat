@@ -1,1 +1,137 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Student Profile</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+margin:0;
+padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 0 10px rgba(0,0,0,.15);
+}
+
+h1{
+text-align:center;
+color:#006b3c;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+td{
+border:1px solid #ddd;
+padding:12px;
+}
+
+td:first-child{
+font-weight:bold;
+width:35%;
+background:#f8f8f8;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+background:#006b3c;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+background:#004f2d;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Student Profile</h1>
+
+<table>
+
+<tr>
+<td>Student Name</td>
+<td id="studentName"></td>
+</tr>
+
+<tr>
+<td>Class</td>
+<td id="class"></td>
+</tr>
+
+<tr>
+<td>Date of Birth</td>
+<td id="dob"></td>
+</tr>
+
+<tr>
+<td>Religion</td>
+<td id="religion"></td>
+</tr>
+
+<tr>
+<td>Father Name</td>
+<td id="fatherName"></td>
+</tr>
+
+<tr>
+<td>Mother Name</td>
+<td id="motherName"></td>
+</tr>
+
+<tr>
+<td>Mobile</td>
+<td id="mobile"></td>
+</tr>
+
+<tr>
+<td>WhatsApp</td>
+<td id="whatsapp"></td>
+</tr>
+
+<tr>
+<td>Village</td>
+<td id="village"></td>
+</tr>
+
+<tr>
+<td>District</td>
+<td id="district"></td>
+</tr>
+
+</table>
+
+<button onclick="window.print()">
+Print Admission Form
+</button>
+
+<script type="module" src="student-profile.js"></script>
+
+</div>
+
+</body>
+</html>
