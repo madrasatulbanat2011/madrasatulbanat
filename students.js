@@ -36,7 +36,10 @@ async function loadStudents() {
 }
 
 loadStudents();
-window.viewStudent = async function(id){
+window.viewStudent = function(id){
+
+    const student = Array.from(document.querySelectorAll("#studentTable tr"))
+        .find(row => row.querySelector("button").getAttribute("onclick").includes(id));
 
     localStorage.setItem("studentId", id);
 
