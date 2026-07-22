@@ -36,13 +36,11 @@ async function loadStudents() {
 }
 
 loadStudents();
-window.viewStudent = function(id){
 
-    const student = Array.from(document.querySelectorAll("#studentTable tr"))
-        .find(row => row.querySelector("button").getAttribute("onclick").includes(id));
+  window.viewStudent = function(id){
 
     localStorage.setItem("studentId", id);
 
     window.location.href = "student-profile.html";
 
-}
+  }  
