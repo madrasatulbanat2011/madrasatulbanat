@@ -6,6 +6,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const studentId = localStorage.getItem("studentId");
+alert(studentId);
 
 async function loadStudent() {
 
