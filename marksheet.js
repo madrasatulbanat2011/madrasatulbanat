@@ -46,7 +46,16 @@ async function loadMarksheet() {
     }
 const studentQuery = query(
 collection(db,"students"),
-where("__name__","==",studentId)
+const studentDoc = await getDoc(doc(db, "students", studentId));
+
+if (studentDoc.exists()) {
+    const s = studentDoc.data();
+
+    document.getElementById("studentName").textContent = s.studentName;
+    document.getElementById("fatherName").textContent = s.fatherName;
+    document.getElementById("motherName").textContent = s.motherName;
+    document.getElementById("class").textContent = s.class;
+}
 );
 
 const studentSnapshot = await getDocs(studentQuery);
