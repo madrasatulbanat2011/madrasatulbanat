@@ -1,10 +1,10 @@
 import { db } from "./firebase.js";
 
- import {
-    collection,
-    getDocs,
-    getDoc,
-    doc
+import {
+  collection,
+  getDocs,
+  getDoc,
+  doc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 async function loadMarksheet() {
@@ -12,11 +12,12 @@ async function loadMarksheet() {
   const params = new URLSearchParams(window.location.search);
   const studentId = params.get("studentId");
 
-  const querySnapshot = await getDocs(collection(db, "results"));
+  // Result Data
+  const resultSnapshot = await getDocs(collection(db, "results"));
 
-  querySnapshot.forEach((doc) => {
+  resultSnapshot.forEach((resultDoc) => {
 
-    const r = doc.data();
+    const r = resultDoc.data();
 
     if (r.studentId === studentId) {
 
@@ -43,20 +44,24 @@ async function loadMarksheet() {
       else if (r.percentage >= 40) grade = "D";
 
       document.getElementById("grade").textContent = grade;
+
     }
 
-const studentDoc = await getDoc(doc(db, "students", studentId));
+  });
 
-if (studentDoc.exists()) {
+  // Student Data
+  const studentDoc = await getDoc(doc(db, "students", studentId));
+
+  if (studentDoc.exists()) {
+
     const s = studentDoc.data();
 
     document.getElementById("studentName").textContent = s.studentName;
     document.getElementById("fatherName").textContent = s.fatherName;
     document.getElementById("motherName").textContent = s.motherName;
     document.getElementById("class").textContent = s.class;
-}
-);
 
+  }
 
 }
 
