@@ -74,7 +74,7 @@
               <option value="">কোর্স নির্বাচন করুন</option>
               <option value="General">জেনারেল (General)</option>
               <option value="Hifz">হিফজ (Hifz)</option>
-              <option value="Arabic General">আরবি এবং জেনারেল (Arabic General)</option>
+              <option value="Arabic General">এরাবিক জেনারেল (Arabic General)</option>
               <option value="Arabic">আরবিক (Arabic)</option>
             </select>
           </div>
@@ -135,6 +135,36 @@
           <div class="form-group full-width">
             <label>সম্পূর্ণ ঠিকানা (Address)*</label>
             <textarea id="address" rows="3" placeholder="গ্রাম/পাড়া, পোস্ট অফিস, থানা, জেলা" required></textarea>
+          </div>
+
+          <!-- Document Uploads -->
+          <div class="form-group full-width">
+            <h3 style="margin-top: 15px; margin-bottom: 10px; color: #1b5e20; font-size: 1.1rem; border-bottom: 2px solid #e0e0e0; padding-bottom: 5px;">📎 প্রয়োজনীয় ডকুমেন্টস আপলোড (Document Upload)</h3>
+          </div>
+
+          <div class="form-group">
+            <label>ছাত্রীর ছবি (Student Photo)*</label>
+            <input type="file" id="studentPhoto" accept="image/*" required>
+          </div>
+
+          <div class="form-group">
+            <label>টিসি সার্টিফিকেট (TC Certificate)</label>
+            <input type="file" id="tcCertificate" accept="image/*,.pdf">
+          </div>
+
+          <div class="form-group">
+            <label>জন্ম সার্টিফিকেট (Birth Certificate)*</label>
+            <input type="file" id="birthCertificate" accept="image/*,.pdf" required>
+          </div>
+
+          <div class="form-group">
+            <label>স্কুল সার্টিফিকেট / মার্কশীট (School Certificate)</label>
+            <input type="file" id="schoolCertificate" accept="image/*,.pdf">
+          </div>
+
+          <div class="form-group full-width">
+            <label>অন্যান্য ডকুমেন্টস (Other Documents)</label>
+            <input type="file" id="otherDocs" accept="image/*,.pdf">
           </div>
 
         </div>
