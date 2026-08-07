@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result List - Barbakpur Madrasatul Banat</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #1b5e20; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        th { background-color: #1b5e20; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .btn-view { background-color: #2e7d32; color: white; padding: 6px 12px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; }
+        .btn-view:hover { background-color: #1b5e20; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>ছাত্রীদের সেভ হওয়া রেজাল্ট তালিকা (Result List)</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>আইডি / রোল</th>
+                <th>ছাত্রীর নাম</th>
+                <th>পরীক্ষার নাম</th>
+                <th>মোট নম্বর</th>
+                <th>মার্কশিট</th>
+            </tr>
+        </thead>
+        <tbody id="resultTableBody">
+            <!-- ডাটাবেস বা লোকাল স্টোরেজ থেকে ডাটা এখানে অটোমেটিক লোড হবে -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // রেজাল্ট লোড করার ফাংশন (Local Storage / Database)
+    function loadResults() {
+        const tableBody = document.getElementById('resultTableBody');
+        const results = JSON.parse(localStorage.getItem('studentResults')) || [];
+
+        if (results.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="5">কোনো রেজাল্ট পাওয়া যায়নি। আগে রেজাল্ট সেভ করুন।</td></tr>';
+            return;
+        }
+
+        tableBody.innerHTML = '';
+        results.forEach((data, index) => {
+            const row = `
+                <tr>
+                    <td>${data.studentId || (index + 1)}</td>
+                    <td>${data.studentName}</td>
+                    <td>${data.examName}</td>
+                    <td>${data.totalMarks || '-'}</td>
+                    <td><button class="btn-view" onclick="viewMarksheet(${index})">মার্কশিট দেখুন</button></td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+    }
+
+    function viewMarksheet(index) {
+        alert("ছাত্রীর মার্কশিট প্রসেস করা হচ্ছে...");
+        // এখানে নির্দিষ্ট ছাত্রীর মার্কশিট পপ-আপ বা পেজে নেওয়ার কোড হবে
+    }
+
+    window.onload = loadResults;
+</script>
+
+</body>
+</html>
