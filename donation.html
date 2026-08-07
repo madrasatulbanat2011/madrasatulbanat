@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation | Barbakpur Madrasatul Banat</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=sans-serif" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+            background: #f4f8f5;
+            margin: 0;
+            padding: 0;
+            color: #1e293b;
+        }
+
+        /* Header Banner */
+        .hero {
+            background: #006b3c;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .hero h1 { margin: 0; font-size: 32px; }
+        .hero p { margin-top: 10px; opacity: 0.9; font-size: 16px; }
+
+        .container {
+            max-width: 1100px;
+            margin: -30px auto 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; margin-top: 20px; }
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: #006b3c;
+            font-size: 22px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        /* Bank Details Box */
+        .bank-info-box {
+            background: #f8fafc;
+            border: 1px dashed #006b3c;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        .info-row span:first-child { font-weight: 600; color: #475569; }
+        .info-row span:last-child { font-weight: 700; color: #006b3c; }
+
+        .qr-box {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+        }
+
+        .qr-box img {
+            width: 160px;
+            height: 160px;
+            object-fit: contain;
+        }
+
+        /* Form Controls */
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 14px; }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+        input:focus, select:focus { border-color: #006b3c; }
+
+        /* Quick Amount Buttons */
+        .amount-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .amt-btn {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #006b3c;
+            background: white;
+            color: #006b3c;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .amt-btn.active, .amt-btn:hover {
+            background: #006b3c;
+            color: white;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: #006b3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .btn-submit:hover { background: #004f2d; }
+    </style>
+</head>
+
+<body>
+
+    <div class="hero">
+        <h1>🤝 মাদ্রাসাতুল বানাত দান পোল</h1>
+        <p>আপনার দান ও সদকা দ্বীনি শিক্ষার প্রসারে সহায়তা করবে</p>
+    </div>
+
+    <div class="container">
+
+        <!-- ১. ব্যাংক ও পেমেন্ট ডিটেইলস (ডান বা বাম পাশের কার্ড) -->
+        <div class="card">
+            <h2>💳 ব্যাংকের তথ্য (Bank Details)</h2>
+            <p style="font-size: 14px; color: #64748b;">নিচের অ্যাকাউন্টে সরাসরি টাকা পাঠাতে পারেন:</p>
+
+            <div class="bank-info-box">
+                <div class="info-row">
+                    <span>Account Name:</span>
+                    <span>Barbakpur Madrasatul Banat Trust</span>
+                </div>
+                <div class="info-row">
+                    <span>Bank Name:</span>
+                    <span>[এখানে ব্যাংকের নাম দিন]</span>
+                </div>
+                <div class="info-row">
+                    <span>Account Number:</span>
+                    <span>XXXXXXXXXXXXXX</span>
+                </div>
+                <div class="info-row">
+                    <span>IFSC Code:</span>
+                    <span>XXXX0000XXX</span>
+                </div>
+                <div class="info-row">
+                    <span>Branch:</span>
+                    <span>[শাখার নাম]</span>
+                </div>
+                <div class="info-row">
+                    <span>UPI ID:</span>
+                    <span>madrasa@upi</span>
+                </div>
+            </div>
+
+            <!-- QR Code Placeholder -->
+            <div class="qr-box">
+                <p style="margin-top:0; font-weight:600;">Scan QR Code to Pay</p>
+                <img id="qrCodeImg" src="https://via.placeholder.com/160x160?text=UPI+QR+Code" alt="UPI QR Code">
+                <p style="font-size:12px; color:#64748b; margin-bottom:0;">PhonePe / Google Pay / Paytm</p>
+            </div>
+        </div>
+
+        <!-- ২. দানকারীর ফর্ম ও তথ্য জমা -->
+        <div class="card">
+            <h2>📝 আপনার অনুদানের তথ্য পাঠান</h2>
+            <form id="donationForm">
+
+                <div class="form-group">
+                    <label>দানের ধরন (Donation Type)</label>
+                    <select id="donationType" required>
+                        <option value="General Donation">সাধারণ দান (General)</option>
+                        <option value="Zakat">জাকাত (Zakat)</option>
+                        <option value="Sadqah">সদকা (Sadqah)</option>
+                        <option value="Lillah Fund">লিল্লাহ ফান্ড</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>অনুদানের পরিমাণ (Amount in ₹)</label>
+                    <div class="amount-options">
+                        <button type="button" class="amt-btn" onclick="setAmount(500)">₹৫০০</button>
+                        <button type="button" class="amt-btn" onclick="setAmount(1000)">₹১০০০</button>
+                        <button type="button" class="amt-btn" onclick="setAmount(5000)">₹৫০০০</button>
+                    </div>
+                    <input type="number" id="amount" placeholder="পরিমাণ লিখুন (যেমন: ১০০০)" required>
+                </div>
+
+                <div class="form-group">
+                    <label>আপনার নাম (Donor Name)</label>
+                    <input type="text" id="donorName" placeholder="পূর্ণ নাম লিখুন" required>
+                </div>
+
+                <div class="form-group">
+                    <label>মোবাইল নম্বর (Mobile Number)</label>
+                    <input type="tel" id="donorMobile" placeholder="মোবাইল নম্বর" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Transaction ID / UTR No (টাকা পাঠানোর পর পাবেন)</label>
+                    <input type="text" id="trxId" placeholder="Transaction ID / UTR No. লিখুন" required>
+                </div>
+
+                <div class="form-group">
+                    <label>ঠিকানা / মন্তব্য (Optional)</label>
+                    <textarea id="address" rows="2" placeholder="গ্রাম/শহর বা বিশেষ কোনো দোয়া/মন্তব্য..."></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn-submit">রসিদের জন্য জমা দিন</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script type="module" src="donation.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Admission - Barbakpur Madrasatul Banat</title>
+    <meta name="description" content="Online Admission Form for Barbakpur Madrasatul Banat">
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="topbar">
+        <div class="container">
+            <span>🕌 Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh</span>
+            <span>📞 +91 9134488045</span>
+        </div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">🕌 BMB</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="admission.html">Admission</a></li>
+                    <li><a href="students.html">Students</a></li>
+                    <li><a href="result.html">Add Result</a></li>
+                    <li><a href="results.html">Result List</a></li>
+                    <li><a href="attendance.html">Attendance</a></li>
+                    <li><a href="notice.html">Notice</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Admission Form Section -->
+    <section class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2 class="form-title">🎓 অনলাইনে ভর্তির আবেদন (২০২৬)</h2>
+                
+                <form id="admissionForm">
+                    <div class="form-grid">
+                        
+                        <!-- Student Name -->
+                        <div class="form-group">
+                            <label for="student_name">ছাত্রীর পূর্ণ নাম (Full Name)*</label>
+                            <input type="text" id="student_name" name="student_name" placeholder="ছাত্রীর নাম লিখুন" required>
+                        </div>
+
+                        <!-- Father's Name -->
+                        <div class="form-group">
+                            <label for="father_name">পিতার নাম (Father's Name)*</label>
+                            <input type="text" id="father_name" name="father_name" placeholder="পিতার নাম লিখুন" required>
+                        </div>
+
+                        <!-- Mother's Name -->
+                        <div class="form-group">
+                            <label for="mother_name">মাতার নাম (Mother's Name)</label>
+                            <input type="text" id="mother_name" name="mother_name" placeholder="মাতার নাম লিখুন">
+                        </div>
+
+                        <!-- Mobile Number -->
+                        <div class="form-group">
+                            <label for="mobile">মোবাইল নম্বর (Mobile No)*</label>
+                            <input type="tel" id="mobile" name="mobile" placeholder="১০ ডিজিটের মোবাইল নম্বর" required>
+                        </div>
+
+                        <!-- Date of Birth -->
+                        <div class="form-group">
+                            <label for="dob">জন্ম তারিখ (Date of Birth)*</label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+
+                        <!-- Department Selection -->
+                        <div class="form-group">
+                            <label for="department">বিভাগ (Department)*</label>
+                            <select id="department" name="department" required>
+                                <option value="">বিভাগ নির্বাচন করুন</option>
+                                <option value="General">জেনারেল বিভাগ (General)</option>
+                                <option value="Arabic">আরবি / দ্বীনি বিভাগ (Arabic)</option>
+                                <option value="Both">জেনারেল ও আরবি উভয়</option>
+                            </select>
+                        </div>
+
+                        <!-- Class Selection (Class III to Class XII) -->
+                        <div class="form-group">
+                            <label for="class_name">ভর্তির শ্রেণী (Class III to XII)*</label>
+                            <select id="class_name" name="class_name" required>
+                                <option value="">শ্রেণী নির্বাচন করুন</option>
+                                <option value="Class III">Class III (তৃতীয় শ্রেণী)</option>
+                                <option value="Class IV">Class IV (চতুর্থ শ্রেণী)</option>
+                                <option value="Class V">Class V (পঞ্চম শ্রেণী)</option>
+                                <option value="Class VI">Class VI (ষষ্ঠ শ্রেণী)</option>
+                                <option value="Class VII">Class VII (সপ্তম শ্রেণী)</option>
+                                <option value="Class VIII">Class VIII (অষ্টম শ্রেণী)</option>
+                                <option value="Class IX">Class IX (নবম শ্রেণী)</option>
+                                <option value="Class X">Class X (দশম শ্রেণী)</option>
+                                <option value="Class XI">Class XI (একাদশ শ্রেণী)</option>
+                                <option value="Class XII">Class XII (দ্বাদশ শ্রেণী)</option>
+                            </select>
+                        </div>
+
+                        <!-- Residential Type -->
+                        <div class="form-group">
+                            <label for="residence">আবাসিক ব্যবস্থা (Residence)*</label>
+                            <select id="residence" name="residence" required>
+                                <option value="Residential">আবাসিক (Hostel)</option>
+                                <option value="Non-Residential">অনাবাসিক (Day Scholar)</option>
+                            </select>
+                        </div>
+
+                        <!-- Full Address -->
+                        <div class="form-group full-width">
+                            <label for="address">সম্পূর্ণ ঠিকানা (Address)*</label>
+                            <textarea id="address" name="address" rows="3" placeholder="গ্রাম/পাড়া, পোস্ট অফিস, থানা, জেলা" required></textarea>
+                        </div>
+
+                    </div>
+
+                    <div style="text-align: center; margin-top: 25px;">
+                        <button type="submit" class="btn" style="width: 100%; max-width: 300px;">আবেদন জমা দিন</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <h3>🕌 Barbakpur Madrasatul Banat</h3>
+                <p>Education & Social Welfare Trust</p>
+                <p>Established : 2011</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <p><a href="about.html">About</a></p>
+                <p><a href="admission.html">Admission</a></p>
+                <p><a href="gallery.html">Gallery</a></p>
+                <p><a href="contact.html">Contact</a></p>
+            </div>
+            <div>
+                <h3>Follow Us</h3>
+                <p><a href="#">Facebook</a></p>
+                <p><a href="#">YouTube</a></p>
+                <p><a href="https://wa.me/919134488045" target="_blank">WhatsApp</a></p>
+                <p><a href="mailto:madrasatulbanat2011@gmail.com">Email</a></p>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">
+            © <span id="year"></span> Barbakpur Madrasatul Banat. All Rights Reserved.
+        </p>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <a href="https://wa.me/919134488045" target="_blank" class="whatsapp" title="Chat on WhatsApp">💬</a>
+    <button id="topBtn" onclick="topFunction()" title="Go to top">⬆</button>
+
+    <!-- JavaScript Link -->
+    <script src="script.js"></script>
+</body>
+</html>

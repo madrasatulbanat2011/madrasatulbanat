@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Admission Applications</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #f4f7f6; font-family: 'Poppins', sans-serif; }
+        .table-wrapper { width: 100%; overflow-x: auto; background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; min-width: 750px; }
+        th, td { padding: 12px 15px; border-bottom: 1px solid #e2e8f0; text-align: left; font-size: 14px; }
+        th { background: #0B6E4F; color: white; font-weight: 600; }
+        tr:hover { background-color: #f8fafc; }
+
+        /* Login Overlay Modal */
+        #loginOverlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .login-box {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .login-box h3 { color: #0B6E4F; margin-bottom: 10px; font-size: 22px; }
+        .login-box p { font-size: 13px; color: #64748b; margin-bottom: 20px; }
+        .login-box input {
+            width: 100%; padding: 12px;
+            border: 1px solid #cbd5e1; border-radius: 8px;
+            font-size: 15px; box-sizing: border-border-box;
+            margin-bottom: 15px; text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Password Protection Modal -->
+    <div id="loginOverlay">
+        <div class="login-box">
+            <h3>🔒 Admin Access Required</h3>
+            <p>অ্যাডমিন প্যানেলে প্রবেশ করতে পাসওয়ার্ড প্রদান করুন</p>
+            <form id="loginForm">
+                <input type="password" id="adminPassword" placeholder="পাসওয়ার্ড লিখুন" required autofocus>
+                <button type="submit" class="btn-submit" style="width: 100%; padding: 12px;">লগইন করুন</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Content (Authentic Users Only) -->
+    <div id="adminContent" class="container" style="padding: 40px 15px; display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2 style="color: #0B6E4F;">📋 জমা পড়া ভর্তি আবেদনের তালিকা</h2>
+            <div>
+                <button id="refreshBtn" class="btn-submit" style="width: auto; padding: 8px 18px; margin-right: 8px;">রিলোড দিন</button>
+                <button id="logoutBtn" style="padding: 8px 18px; background: #dc2626; color: white; border: none; border-radius: 8px; cursor: pointer;">লগআউট</button>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ছাত্রীর নাম</th>
+                        <th>শ্রেণী</th>
+                        <th>অভিভাবকের নাম</th>
+                        <th>মোবাইল নম্বর</th>
+                        <th>ঠিকানা</th>
+                        <th>আবেদনের তারিখ</th>
+                    </tr>
+                </thead>
+                <tbody id="applicantList">
+                    <tr><td colspan="6" style="text-align: center;">ডাটা লোড হচ্ছে...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="module" src="admin-admissions.js"></script>
+</body>
+</html>

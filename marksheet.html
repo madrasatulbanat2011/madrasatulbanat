@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marksheet - Barbakpur Madrasatul Banat</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', 'Times New Roman', serif;
+        }
+
+        body {
+            background: #e9ecef;
+            padding: 20px;
+        }
+
+        .container {
+            width: 210mm;
+            min-height: 297mm;
+            margin: auto;
+            background: #fff;
+            border: 4px solid #0B6E4F;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #0B6E4F;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            display: block;
+            margin: 0 auto 10px;
+            object-fit: contain;
+        }
+
+        .header h1 {
+            color: #0B6E4F;
+            font-size: 28px;
+            margin-bottom: 3px;
+            font-weight: 700;
+        }
+
+        .header h2 {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #555;
+            margin: 2px 0;
+        }
+
+        .title {
+            margin-top: 15px;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            color: #0B6E4F;
+            letter-spacing: 1px;
+            text-decoration: underline;
+        }
+
+        /* Student Info Grid */
+        .student-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 20px;
+            margin: 25px 0;
+            font-size: 16px;
+            background: #f8fff9;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #dbe7e1;
+        }
+
+        .student-info p {
+            color: #333;
+        }
+
+        .student-info b {
+            color: #0B6E4F;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #b5d1c5;
+            padding: 10px 15px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        th {
+            background: #0B6E4F;
+            color: white;
+            font-weight: 600;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9fbf9;
+        }
+
+        .summary-row th {
+            background: #eef8f4;
+            color: #0B6E4F;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* Signature Section */
+        .signature {
+            margin-top: 80px;
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .signature div {
+            width: 28%;
+        }
+
+        .signature hr {
+            border: none;
+            border-top: 2px solid #333;
+            margin-bottom: 8px;
+        }
+
+        /* Action Buttons */
+        .actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .print-btn {
+            background: #0B6E4F;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .print-btn:hover {
+            background: #08543c;
+        }
+
+        /* Print Media Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .actions {
+                display: none;
+            }
+
+            .container {
+                border: none;
+                width: 100%;
+                box-shadow: none;
+                padding: 5mm;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="marksheet">
+
+    <!-- Header -->
+    <div class="header">
+        <img src="images/logo.png" class="logo" alt="Madrasa Logo" onerror="this.style.display='none'">
+        <h1>Barbakpur Madrasatul Banat</h1>
+        <h2>Education & Social Welfare Trust</h2>
+        <p><b>Established :</b> 2011</p>
+        <p>📍 Barbakpur, Karimpur, Nadia, West Bengal - 741165</p>
+        <p>📞 +91 9134488045 &nbsp;|&nbsp; ✉ madrasatulbanat2011@gmail.com</p>
+        
+        <div class="title">ACADEMIC MARKSHEET</div>
+    </div>
+
+    <!-- Student Info -->
+    <div class="student-info">
+        <p><b>Student Name :</b> <span id="studentName">-</span></p>
+        <p><b>Student ID :</b> <span id="studentId">-</span></p>
+        <p><b>Father's Name :</b> <span id="fatherName">-</span></p>
+        <p><b>Mother's Name :</b> <span id="motherName">-</span></p>
+        <p><b>Class :</b> <span id="class">-</span></p>
+        <p><b>Exam :</b> <span id="exam">-</span></p>
+    </div>
+
+    <!-- Marks Table -->
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 60%;">Subject</th>
+                <th style="width: 40%;">Marks Obtained</th>
+            </tr>
+        </thead>
+        <tbody id="marksBody">
+            <tr><td>Bangla</td><td id="bangla">-</td></tr>
+            <tr><td>English</td><td id="english">-</td></tr>
+            <tr><td>Mathematics</td><td id="math">-</td></tr>
+            <tr><td>Science</td><td id="science">-</td></tr>
+            <tr><td>History</td><td id="history">-</td></tr>
+            <tr><td>Geography</td><td id="geography">-</td></tr>
+        </tbody>
+        <tfoot>
+            <tr class="summary-row">
+                <th>Total Marks</th>
+                <th id="total">-</th>
+            </tr>
+            <tr class="summary-row">
+                <th>Percentage</th>
+                <th id="percentage">-</th>
+            </tr>
+            <tr class="summary-row">
+                <th>Grade</th>
+                <th id="grade">-</th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <!-- Signature -->
+    <div class="signature">
+        <div>
+            <hr>
+            Class Teacher
+        </div>
+        <div>
+            <hr>
+            Headmaster
+        </div>
+        <div>
+            <hr>
+            Institute Seal
+        </div>
+    </div>
+
+    <!-- Print Action -->
+    <div class="actions">
+        <button class="print-btn" onclick="window.print()">🖨 Print Marksheet</button>
+    </div>
+
+</div>
+
+<!-- JavaScript Logic Link -->
+<script type="module" src="marksheet.js"></script>
+
+</body>
+</html>
