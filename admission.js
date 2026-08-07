@@ -1,17 +1,64 @@
 import { db } from './firebase.js';
 import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-// Helper function to convert File to Base64 String
-const fileToBase64 = (file) => {
-  return new Promise((resolve, reject) => {
+// Helper function to compress and convert image to Base64
+const compressAndToBase64 = (file) => {
+  return new Promise((resolve) => {
     if (!file) {
       resolve("");
       return;
     }
+
+    // If file is PDF, directly convert (small pdfs) or skip heavy processing
+    if (file.type === "application/pdf") {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => resolve("");
+      return;
+    }
+
+    const img = new Image();
     const reader = new FileReader();
+
+    reader.onload = (e) => {
+      img.src = e.target.result;
+    };
+
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      // Max dimension width/height
+      const MAX_WIDTH = 600;
+      const MAX_HEIGHT = 600;
+      let width = img.width;
+      let height = img.height;
+
+      if (width > height) {
+        if (width > MAX_WIDTH) {
+          height *= MAX_WIDTH / width;
+          width = MAX_WIDTH;
+        }
+      } else {
+        if (height > MAX_HEIGHT) {
+          width *= MAX_HEIGHT / height;
+          height = MAX_HEIGHT;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+
+      ctx.drawImage(img, 0, 0, width, height);
+
+      // Compress to JPEG with 0.6 quality
+      const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.6);
+      resolve(compressedDataUrl);
+    };
+
+    img.onerror = () => resolve("");
     reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
   });
 };
 
@@ -33,12 +80,12 @@ if (admissionForm) {
       const schoolCertificate = document.getElementById('schoolCertificate')?.files[0];
       const otherDocs = document.getElementById('otherDocs')?.files[0];
 
-      // Convert files to Base64 strings
-      const photoBase64 = await fileToBase64(studentPhoto);
-      const tcBase64 = await fileToBase64(tcCertificate);
-      const birthBase64 = await fileToBase64(birthCertificate);
-      const schoolBase64 = await fileToBase64(schoolCertificate);
-      const otherBase64 = await fileToBase64(otherDocs);
+      // Compress files to Base64 strings
+      const photoBase64 = await compressAndToBase64(studentPhoto);
+      const tcBase64 = await compressAndToBase64(tcCertificate);
+      const birthBase64 = await compressAndToBase64(birthCertificate);
+      const schoolBase64 = await compressAndToBase64(schoolCertificate);
+      const otherBase64 = await compressAndToBase64(otherDocs);
 
       // Collect Form Data
       const formData = {
@@ -71,7 +118,7 @@ if (admissionForm) {
 
     } catch (error) {
       console.error("Error submitting form: ", error);
-      alert('আবেদন জমা দিতে সমস্যা হয়েছে! আবার চেষ্টা করুন।');
+      alert('আবেদন জমা দিতে সমস্যা হয়েছে! ফায়ারবেস বা নেটওয়ার্ক চেক করুন।');
     } finally {
       submitBtn.innerText = 'আবেদন জমা দিন';
       submitBtn.disabled = false;
