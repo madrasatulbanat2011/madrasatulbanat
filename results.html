@@ -1,84 +1,218 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Result - Barbakpur Madrasatul Banat</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Result Management - Barbakpur Madrasatul Banat</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .result-card {
+      max-width: 850px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .subject-section {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 6px;
+      border-left: 4px solid #1b5e20;
+    }
+    .subject-section h4 {
+      margin-top: 0;
+      color: #1b5e20;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 8px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 600px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    .subject-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      padding: 8px;
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+    }
+    .subject-box input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    .subject-box input[type="number"] {
+      flex-grow: 1;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      background: #1b5e20;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .btn-submit:hover { background: #144417; }
+  </style>
 </head>
 <body>
 
-    <header>
-        <div class="container nav-container">
-            <a href="index.html" class="logo">🕌 BMB</a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="admission.html">Admission</a></li>
-                    <li><a href="results.html" class="active">Search Result</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
+  <div class="result-card">
+    <h2 style="text-align: center; color: #1b5e20;">Student Result Management</h2>
+    <p style="text-align: center; color: #666; font-size: 13px;">(যে যে সাবজেক্টে নম্বর দেওয়া হবে, শুধুমাত্র সেগুলিই প্রিন্ট কপির মার্কশিটে দেখাবে)</p>
+    
+    <form id="resultForm">
+      <!-- Student Selection & Exam Info -->
+      <div class="form-group">
+        <label for="studentSelect">Select Student (ছাত্রী নির্বাচন করুন) *</label>
+        <select id="studentSelect" class="form-control" required>
+          <option value="">-- লোড হচ্ছে... অপেক্ষা করুন --</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="examName">Exam Name (পরীক্ষার নাম) *</label>
+        <input type="text" id="examName" class="form-control" placeholder="যেমন: বার্ষিক পরীক্ষা / ১ম সাময়িক" required>
+      </div>
+
+      <!-- General Subjects -->
+      <div class="subject-section">
+        <h4>📚 সাধারণ বিষয়সমূহ (General Subjects)</h4>
+        <div class="grid-2">
+          <div class="subject-box">
+            <input type="checkbox" id="chk_bangla" checked>
+            <input type="number" id="sub_bangla" class="form-control" placeholder="বাংলা (Bangla)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_english" checked>
+            <input type="number" id="sub_english" class="form-control" placeholder="ইংরেজি (English)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_math" checked>
+            <input type="number" id="sub_math" class="form-control" placeholder="গণিত (Mathematics)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_pSc">
+            <input type="number" id="sub_pSc" class="form-control" placeholder="ভৌত বিজ্ঞান (Physical Science)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_lSc">
+            <input type="number" id="sub_lSc" class="form-control" placeholder="জীবন বিজ্ঞান (Life Science)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_history">
+            <input type="number" id="sub_history" class="form-control" placeholder="ইতিহাস (History)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_geography">
+            <input type="number" id="sub_geography" class="form-control" placeholder="ভূগোল (Geography)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_env">
+            <input type="number" id="sub_env" class="form-control" placeholder="পরিবেশ (Environment)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_urdu">
+            <input type="number" id="sub_urdu" class="form-control" placeholder="উর্দু (Urdu)">
+          </div>
         </div>
-    </header>
+      </div>
 
-    <section class="form-section">
-        <div class="container">
-            <!-- Search Box -->
-            <div class="form-card" style="max-width: 550px; text-align: center;">
-                <div class="form-header">
-                    <h2>🔍 পরীক্ষা রেজাল্ট খুঁজুন</h2>
-                    <p>ছাত্রীর আইডি নম্বর দিয়ে নিচে সার্চ করুন</p>
-                </div>
-                
-                <form id="searchForm" style="display: flex; gap: 10px; margin-top: 20px;">
-                    <input type="text" id="searchId" placeholder="উদাহরণ: BMB-2026-101" required style="flex: 1; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px;">
-                    <button type="submit" id="searchBtn" class="btn-submit" style="width: auto; padding: 12px 25px;">Search</button>
-                </form>
-            </div>
-
-            <!-- Result Display Card -->
-            <div id="resultDisplay" class="form-card" style="max-width: 650px; margin-top: 30px; display: none;">
-                <div class="form-header">
-                    <h2 id="resStudentName" style="color: #0B6E4F;"></h2>
-                    <p id="resExamName"></p>
-                </div>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; background: #f8fafc; padding: 15px; border-radius: 8px; font-size: 14px;">
-                    <div><strong>আইডি:</strong> <span id="resId"></span></div>
-                    <div><strong>শ্রেণী:</strong> <span id="resClass"></span></div>
-                    <div><strong>পিতার নাম:</strong> <span id="resFather"></span></div>
-                    <div><strong>মাতার নাম:</strong> <span id="resMother"></span></div>
-                </div>
-
-                <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-                    <thead>
-                        <tr style="background-color: #0B6E4F; color: white; text-align: left;">
-                            <th style="padding: 10px; border-radius: 6px 0 0 6px;">বিষয়</th>
-                            <th style="padding: 10px; border-radius: 0 6px 6px 0; text-align: right;">প্রাপ্ত নম্বর</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 10px;">বাংলা</td><td id="resBangla" style="text-align: right; padding: 10px;"></td></tr>
-                        <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 10px;">ইংরেজি</td><td id="resEnglish" style="text-align: right; padding: 10px;"></td></tr>
-                        <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 10px;">গণিত</td><td id="resMath" style="text-align: right; padding: 10px;"></td></tr>
-                        <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 10px;">বিজ্ঞান</td><td id="resScience" style="text-align: right; padding: 10px;"></td></tr>
-                        <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 10px;">ইতিহাস</td><td id="resHistory" style="text-align: right; padding: 10px;"></td></tr>
-                        <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 10px;">ভূগোল</td><td id="resGeography" style="text-align: right; padding: 10px;"></td></tr>
-                    </tbody>
-                </table>
-
-                <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 16px; background: #e6f4ea; padding: 15px; border-radius: 8px;">
-                    <div>মোট নম্বর: <span id="resTotal"></span></div>
-                    <div>গ্রেড: <span id="resGrade"></span></div>
-                </div>
-            </div>
+      <!-- Arabic & Islamic Subjects -->
+      <div class="subject-section">
+        <h4>🕌 আরবি ও দ্বীনিয়াত বিষয়সমূহ (Arabic & Islamic Studies)</h4>
+        <div class="grid-2">
+          <div class="subject-box">
+            <input type="checkbox" id="chk_arabic">
+            <input type="number" id="sub_arabic" class="form-control" placeholder="আরবি (Arabic)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_arabicPath">
+            <input type="number" id="sub_arabicPath" class="form-control" placeholder="আরবি পাঠ">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_diniyat">
+            <input type="number" id="sub_diniyat" class="form-control" placeholder="দিনিয়াত (Diniyat)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_dua">
+            <input type="number" id="sub_dua" class="form-control" placeholder="দোয়া (Dua)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_durusulLughah">
+            <input type="number" id="sub_durusulLughah" class="form-control" placeholder="দুরুসুল লোগাহ">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_hidayah">
+            <input type="number" id="sub_hidayah" class="form-control" placeholder="হেদায়া (Hidayatullah)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_sharmiyat">
+            <input type="number" id="sub_sharmiyat" class="form-control" placeholder="শারমিয়াত (Sharmiyat)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_bukhari1">
+            <input type="number" id="sub_bukhari1" class="form-control" placeholder="বুখারী-১ (Bukhari 1)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_bukhari2">
+            <input type="number" id="sub_bukhari2" class="form-control" placeholder="বুখারী-২ (Bukhari 2)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_muslim1">
+            <input type="number" id="sub_muslim1" class="form-control" placeholder="মুসলিম-১ (Muslim 1)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_muslim2">
+            <input type="number" id="sub_muslim2" class="form-control" placeholder="মুসলিম-২ (Muslim 2)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_tirmidhi">
+            <input type="number" id="sub_tirmidhi" class="form-control" placeholder="তিরমিজি (Tirmidhi)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_abuDawud">
+            <input type="number" id="sub_abuDawud" class="form-control" placeholder="আবু দাউদ (Abu Dawud)">
+          </div>
+          <div class="subject-box">
+            <input type="checkbox" id="chk_raheeq">
+            <input type="number" id="sub_raheeq" class="form-control" placeholder="আর-রাহীকুল মাখতূম">
+          </div>
         </div>
-    </section>
+      </div>
 
-    <script type="module" src="results.js"></script>
+      <button type="submit" class="btn-submit">Save Result (রেজাল্ট সেভ করুন)</button>
+    </form>
+  </div>
+
+  <script type="module" src="results.js"></script>
 </body>
 </html>
