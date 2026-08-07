@@ -1,45 +1,92 @@
-import { db } from "./firebase.js";
+import { db } from './firebase.js';
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-document.addEventListener("DOMContentLoaded", async () => {
-    // ১. URL প্যারামিটার থেকে ছাত্রীর ID বের করা
-    const urlParams = new URLSearchParams(window.location.search);
-    const studentId = urlParams.get("id");
+// Get Student ID from URL params
+const urlParams = new URLSearchParams(window.location.search);
+const studentId = urlParams.get('id');
 
-    if (!studentId) {
-        alert("❌ কোনো ছাত্রীর ID পাওয়া যায়নি!");
-        return;
-    }
+async function loadStudentProfile() {
+  if (!studentId) {
+    alert('কোনো ছাত্রীর ID পাওয়া যায়নি!');
+    return;
+  }
 
-    try {
-        // ২. ফায়ারবেস admissions কালেকশন থেকে ডাটা আনায়ন
-        const docRef = doc(db, "admissions", studentId);
-        const docSnap = await getDoc(docRef);
+  try {
+    const docRef = doc(db, "admissions", studentId);
+    const docSnap = await getDoc(docRef);
 
-        if (docSnap.exists()) {
-            const data = docSnap.data();
+    if (docSnap.exists()) {
+      const data = docSnap.data();
 
-            // ৩. HTML Element-এ তথ্য বসানো
-            document.getElementById("studentName").innerText = data.studentName || "N/A";
-            document.getElementById("class").innerText = data.className || "N/A";
-            document.getElementById("dob").innerText = data.dob || "N/A";
-            document.getElementById("religion").innerText = data.religion || "ইসলাম";
-            document.getElementById("fatherName").innerText = data.fatherName || "N/A";
-            document.getElementById("motherName").innerText = data.motherName || "N/A";
-            document.getElementById("mobile").innerText = data.mobileNumber || "N/A";
-            document.getElementById("whatsapp").innerText = data.whatsappNumber || data.mobileNumber || "N/A";
-            document.getElementById("village").innerText = data.village || "N/A";
-            document.getElementById("district").innerText = data.district || "N/A";
+      // Basic Information
+      document.getElementById('dispName').innerText = data.studentName || 'N/A';
+      document.getElementById('dispClass').innerText = data.className || 'N/A';
+      document.getElementById('dispDob').innerText = data.dob || 'N/A';
+      document.getElementById('dispDept').innerText = data.department || 'N/A';
+      document.getElementById('dispFather').innerText = data.fatherName || 'N/A';
+      document.getElementById('dispMother').innerText = data.motherName || 'N/A';
+      document.getElementById('dispMobile').innerText = data.mobileNumber || 'N/A';
+      document.getElementById('dispResidence').innerText = data.residence || 'N/A';
+      document.getElementById('dispPrevSchool').innerText = data.prevSchool || 'N/A';
+      document.getElementById('dispPrevClass').innerText = data.prevClass || 'N/A';
+      document.getElementById('dispAddress').innerText = data.address || 'N/A';
 
-            // ছবির URL থাকলে তা সেট করা
-            if (data.photoUrl) {
-                document.getElementById("studentPhoto").src = data.photoUrl;
+      // Load Profile Photo
+      const photoImg = document.getElementById('displayPhoto');
+      const noPhotoText = document.getElementById('noPhotoText');
+
+      if (data.documents && data.documents.photo) {
+        photoImg.src = data.documents.photo;
+        photoImg.style.display = 'block';
+        if (noPhotoText) noPhotoText.style.display = 'none';
+      }
+
+      // Load Attached Documents
+      const docsContainer = document.getElementById('docsContainer');
+      docsContainer.innerHTML = ''; // Clear loading text
+
+      const docTitles = {
+        birth: 'জন্ম সার্টিফিকেট',
+        tc: 'টিসি সার্টিফিকেট',
+        school: 'স্কুল সার্টিফিকেট',
+        other: 'অন্যান্য ডকুমেন্ট'
+      };
+
+      let hasDocs = false;
+      const docs = data.documents || {};
+
+      Object.keys(docTitles).forEach(key => {
+        if (docs[key]) {
+          hasDocs = true;
+          const card = document.createElement('div');
+          card.className = 'doc-card';
+
+          const isPdf = docs[key].startsWith('data:application/pdf');
+
+          card.innerHTML = `
+            <p>${docTitles[key]}</p>
+            ${isPdf 
+              ? `<div style="height:100px; display:flex; align-items:center; justify-content:center; background:#eee; font-size:12px; color:#555;">📄 PDF File</div>` 
+              : `<img src="${docs[key]}" alt="${docTitles[key]}">`
             }
-        } else {
-            alert("❌ উক্ত ID-র কোনো তথ্য খুঁজে পাওয়া যায়নি!");
+            <a href="${docs[key]}" target="_blank" download="${key}_document">দেখুন / ডাউনলোড</a>
+          `;
+          docsContainer.appendChild(card);
         }
-    } catch (error) {
-        console.error("Error fetching student profile:", error);
-        alert("❌ ডাটা লোড করতে সমস্যা হয়েছে!");
+      });
+
+      if (!hasDocs) {
+        docsContainer.innerHTML = '<p style="font-size: 13px; color: #888;">কোনো অতিরিক্ত ডকুমেন্ট আপলোড করা হয়নি।</p>';
+      }
+
+    } else {
+      alert('ছাত্রীর কোনো তথ্য পাওয়া যায়নি!');
     }
-});
+  } catch (error) {
+    console.error("Error loading profile: ", error);
+    alert('প্রোফাইল লোড করতে সমস্যা হয়েছে!');
+  }
+}
+
+// Execute on page load
+loadStudentProfile();
