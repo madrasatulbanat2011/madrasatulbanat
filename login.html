@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Barbakpur Madrasatul Banat</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f8; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+    .login-card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; max-width: 350px; text-align: center; }
+    h2 { color: #1b5e20; margin-bottom: 20px; }
+    .form-group { margin-bottom: 15px; text-align: left; }
+    label { font-weight: bold; display: block; margin-bottom: 5px; }
+    input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+    .btn-login { width: 100%; padding: 12px; background: #1b5e20; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    .btn-login:hover { background: #2e7d32; }
+    #msg { margin-top: 15px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<div class="login-card">
+  <h2>🕌 পোর্টালে লগইন করুন</h2>
+  
+  <div class="form-group">
+    <label>লগইন টাইপ নির্বাচন করুন:</label>
+    <select id="userRole">
+      <option value="admin">Admin (ইনস্টিটিউট/অ্যাডমিন)</option>
+      <option value="student">Student (ছাত্রী)</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>ইউজার আইডি / ইমেইল:</label>
+    <input type="text" id="username" placeholder="আইডি বা ইমেইল লিখুন" required>
+  </div>
+
+  <div class="form-group">
+    <label>পাসওয়ার্ড:</label>
+    <input type="password" id="password" placeholder="পাসওয়ার্ড লিখুন" required>
+  </div>
+
+  <button class="btn-login" onclick="handleLogin()">লগইন করুন</button>
+  <div id="msg"></div>
+</div>
+
+<script>
+  function handleLogin() {
+    const role = document.getElementById("userRole").value;
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+    const msg = document.getElementById("msg");
+
+    if (!user || !pass) {
+      msg.style.color = "red";
+      msg.innerText = "❌ আইডি এবং পাসওয়ার্ড উভয়ই দিন!";
+      return;
+    }
+
+    // অ্যাডমিন লগইন চেকিং (ডিফল্ট অ্যাডমিন পাসওয়ার্ড)
+    if (role === "admin") {
+      if (user === "admin" && pass === "12345") { // এখানে আপনার অ্যাডমিন আইডি ও পাসওয়ার্ড দেবেন
+        msg.style.color = "green";
+        msg.innerText = "✅ অ্যাডমিন লগইন সফল! রিডাইরেক্ট হচ্ছে...";
+        setTimeout(() => {
+          window.location.href = "result.html"; // অ্যাডমিন প্যানেলে নিয়ে যাবে
+        }, 1000);
+      } else {
+        msg.style.color = "red";
+        msg.innerText = "❌ ভুল অ্যাডমিন ইউজার বা পাসওয়ার্ড!";
+      }
+    } 
+    // স্টুডেন্ট লগইন চেকিং
+    else if (role === "student") {
+      msg.style.color = "green";
+      msg.innerText = "✅ স্টুডেন্ট প্রোফাইলে নিয়ে যাওয়া হচ্ছে...";
+      setTimeout(() => {
+        window.location.href = "student-profile.html"; // স্টুডেন্ট পেজে নিয়ে যাবে
+      }, 1000);
+    }
+  }
+</script>
+
+</body>
+</html>
