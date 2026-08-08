@@ -3,177 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>অনলাইনে ভর্তির আবেদন - বারবাকপুর মাদ্রাসাতুল বানাত</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Online Admission - Barbakpur Madrasatul Banat</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f8; padding: 20px; }
+    .form-container { max-width: 600px; margin: auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    h2 { color: #1b5e20; text-align: center; }
+    .form-group { margin-bottom: 15px; }
+    label { font-weight: bold; display: block; margin-bottom: 5px; }
+    input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+    .btn-submit { background: #1b5e20; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 16px; }
+    .receipt { display: none; background: #fff; padding: 20px; border: 2px dashed #1b5e20; border-radius: 8px; margin-top: 20px; }
+    .btn-print { background: #0288d1; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 15px; }
+  </style>
 </head>
 <body>
 
-  <!-- Header Section -->
-  <header class="top-bar">
-    <div class="container flex-between">
-      <span>🕌 Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh</span>
-      <span>📞 +91 9134488045</span>
+<div class="form-container">
+  <h2>🎓 অনলাইন ভর্তি ফরম ২০২৬</h2>
+  
+  <form id="admissionForm">
+    <div class="form-group">
+      <label>ছাত্রীর নাম *</label>
+      <input type="text" id="stdName" required placeholder="পুরা নাম লিখুন">
     </div>
-  </header>
-
-  <nav class="navbar">
-    <div class="container flex-between">
-      <a href="index.html" class="logo">
-        <h2>🏰 BMB</h2>
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="admission.html" class="active">Admission</a></li>
-        <li><a href="students.html">Students</a></li>
-        <li><a href="result.html">Result List</a></li>
-        <li><a href="notice.html">Notice</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+    <div class="form-group">
+      <label>অভিভাবকের নাম *</label>
+      <input type="text" id="parentName" required placeholder="পিতা/অভিভাবকের নাম">
     </div>
-  </nav>
-
-  <!-- Admission Form Section -->
-  <section class="form-section">
-    <div class="form-card">
-      <h2>🎓 অনলাইনে ভর্তির আবেদন (২০২৬)</h2>
-      <form id="admissionForm">
-        <div class="form-grid">
-          
-          <!-- Personal Details -->
-          <div class="form-group">
-            <label>ছাত্রীর পূর্ণ নাম (Full Name)*</label>
-            <input type="text" id="studentName" placeholder="ছাত্রীর নাম লিখুন" required>
-          </div>
-
-          <div class="form-group">
-            <label>পিতার নাম (Father's Name)*</label>
-            <input type="text" id="fatherName" placeholder="পিতার নাম লিখুন" required>
-          </div>
-
-          <div class="form-group">
-            <label>মাতার নাম (Mother's Name)</label>
-            <input type="text" id="motherName" placeholder="মাতার নাম লিখুন">
-          </div>
-
-          <div class="form-group">
-            <label>মোবাইল নম্বর (Mobile No)*</label>
-            <input type="tel" id="mobileNumber" placeholder="১০ ডিজিটের মোবাইল নম্বর" pattern="[0-9]{10}" required>
-          </div>
-
-          <div class="form-group">
-            <label>জন্ম তারিখ (Date of Birth)*</label>
-            <input type="date" id="dob" required>
-          </div>
-
-          <!-- Course Selection -->
-          <div class="form-group">
-            <label>কোর্সের নাম (Course Name)*</label>
-            <select id="department" required>
-              <option value="">কোর্স নির্বাচন করুন</option>
-              <option value="General">জেনারেল (General)</option>
-              <option value="Hifz">হিফজ (Hifz)</option>
-              <option value="Arabic General">এরাবিক জেনারেল (Arabic General)</option>
-              <option value="Arabic">আরবিক (Arabic)</option>
-            </select>
-          </div>
-
-          <!-- Class Selection -->
-          <div class="form-group">
-            <label>ভর্তির শ্রেণি / জামাত (Class)*</label>
-            <select id="className" required>
-              <option value="">শ্রেণি বা জামাত নির্বাচন করুন</option>
-              <optgroup label="আরবি জামাতসমূহ">
-                <option value="Maktab">১. মক্তব</option>
-                <option value="Adna Alif">২. আদনা আলিফ</option>
-                <option value="Adna Ba">৩. আদনা বা</option>
-                <option value="Ula">৪. উলা</option>
-                <option value="Saniya">৫. সানিয়া</option>
-                <option value="Salisha">৬. সালিষা</option>
-                <option value="Rabiya">৭. রাবিয়া</option>
-                <option value="Khamisa">৮. খামিসা</option>
-                <option value="Sadisha">৯. সাদিশা</option>
-                <option value="Daura">১০. দাওরা</option>
-              </optgroup>
-              <optgroup label="সাধারণ শ্রেণি (General Class)">
-                <option value="Class III">Class III</option>
-                <option value="Class IV">Class IV</option>
-                <option value="Class V">Class V</option>
-                <option value="Class VI">Class VI</option>
-                <option value="Class VII">Class VII</option>
-                <option value="Class VIII">Class VIII</option>
-                <option value="Class IX">Class IX</option>
-                <option value="Class X">Class X</option>
-                <option value="Class XI">Class XI</option>
-                <option value="Class XII">Class XII</option>
-              </optgroup>
-            </select>
-          </div>
-
-          <!-- Previous School Details -->
-          <div class="form-group">
-            <label>পূর্বের স্কুল/মাদ্রাসার নাম (Previous School/Madrasa)</label>
-            <input type="text" id="prevSchool" placeholder="আগে যে প্রতিষ্ঠানে পড়তো">
-          </div>
-
-          <div class="form-group">
-            <label>পূর্বের শ্রেণি (Previous Class)</label>
-            <input type="text" id="prevClass" placeholder="আগে যে শ্রেণিতে পড়তো">
-          </div>
-
-          <!-- Residential Option -->
-          <div class="form-group">
-            <label>আবাসিক ব্যবস্থা (Residence)*</label>
-            <select id="residence" required>
-              <option value="Hostel">আবাসিক (Hostel)</option>
-              <option value="Day Scholar">অনাবাসিক (Day Scholar)</option>
-            </select>
-          </div>
-
-          <!-- Address -->
-          <div class="form-group full-width">
-            <label>সম্পূর্ণ ঠিকানা (Address)*</label>
-            <textarea id="address" rows="3" placeholder="গ্রাম/পাড়া, পোস্ট অফিস, থানা, জেলা" required></textarea>
-          </div>
-
-          <!-- Document Uploads -->
-          <div class="form-group full-width">
-            <h3 style="margin-top: 15px; margin-bottom: 10px; color: #1b5e20; font-size: 1.1rem; border-bottom: 2px solid #e0e0e0; padding-bottom: 5px;">📎 প্রয়োজনীয় ডকুমেন্টস আপলোড (Document Upload)</h3>
-          </div>
-
-          <div class="form-group">
-            <label>ছাত্রীর ছবি (Student Photo)*</label>
-            <input type="file" id="studentPhoto" accept="image/*" required>
-          </div>
-
-          <div class="form-group">
-            <label>টিসি সার্টিফিকেট (TC Certificate)</label>
-            <input type="file" id="tcCertificate" accept="image/*,.pdf">
-          </div>
-
-          <div class="form-group">
-            <label>জন্ম সার্টিফিকেট (Birth Certificate)*</label>
-            <input type="file" id="birthCertificate" accept="image/*,.pdf" required>
-          </div>
-
-          <div class="form-group">
-            <label>স্কুল সার্টিফিকেট / মার্কশীট (School Certificate)</label>
-            <input type="file" id="schoolCertificate" accept="image/*,.pdf">
-          </div>
-
-          <div class="form-group full-width">
-            <label>অন্যান্য ডকুমেন্টস (Other Documents)</label>
-            <input type="file" id="otherDocs" accept="image/*,.pdf">
-          </div>
-
-        </div>
-
-        <button type="submit" class="btn-submit">আবেদন জমা দিন</button>
-      </form>
+    <div class="form-group">
+      <label>মোবাইল নম্বর *</label>
+      <input type="tel" id="mobile" required placeholder="১০ ডিজিটের মোবাইল নম্বর">
     </div>
-  </section>
+    <div class="form-group">
+      <label>ভর্তির শ্রেণি *</label>
+      <select id="classSelect" required>
+        <option value="">-- শ্রেণি নির্বাচন করুন --</option>
+        <option value="Class 1">প্রথম শ্রেণি</option>
+        <option value="Class 2">দ্বিতীয় শ্রেণি</option>
+        <option value="Class 3">তৃতীয় শ্রেণি</option>
+        <option value="Arabic High">আরবি বিভাগ</option>
+      </select>
+    </div>
+    <button type="submit" class="btn-submit">আবেদন সেভ করুন ও পেমেন্ট করুন</button>
+  </form>
 
-  <script type="module" src="admission.js"></script>
+  <!-- আবেদনের পর ছাত্রীদের জন্য প্রিন্ট রসিদ -->
+  <div id="receiptBox" class="receipt">
+    <h3 style="text-align:center; color:#1b5e20;">Barbakpur Madrasatul Banat</h3>
+    <p style="text-align:center; font-size:12px;">আবেদন রসিদ (Application Slip)</p>
+    <hr>
+    <p><strong>আবেদন আইডি:</strong> <span id="recId"></span></p>
+    <p><strong>ছাত্রীর নাম:</strong> <span id="recName"></span></p>
+    <p><strong>অভিভাবকের নাম:</strong> <span id="recParent"></span></p>
+    <p><strong>শ্রেণি:</strong> <span id="recClass"></span></p>
+    <p><strong>পেমেন্ট স্ট্যাটাস:</strong> <span style="color:green; font-weight:bold;">সফল (Paid)</span></p>
+    <hr>
+    <button onclick="window.print()" class="btn-print">📄 স্লিপ প্রিন্ট করুন</button>
+  </div>
+</div>
+
+<script type="module">
+  import { db } from "./firebase.js";
+  import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  document.getElementById("admissionForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const name = document.getElementById("stdName").value;
+    const parent = document.getElementById("parentName").value;
+    const mobile = document.getElementById("mobile").value;
+    const className = document.getElementById("classSelect").value;
+    const appNum = "BMB" + Math.floor(100000 + Math.random() * 900000);
+
+    try {
+      // ডাটাবেসে তথ্য নিরাপদভাবে পাঠানো
+      await addDoc(collection(db, "admissions"), {
+        appId: appNum,
+        studentName: name,
+        parentName: parent,
+        phone: mobile,
+        class: className,
+        paymentStatus: "Completed",
+        date: new Date().toLocaleDateString("bn-IN")
+      });
+
+      // ফর্ম লুকিয়ে শুধু ছাত্রীর নিজস্ব প্রিন্ট রসিদ দেখানো
+      document.getElementById("admissionForm").style.display = "none";
+      document.getElementById("receiptBox").style.display = "block";
+      document.getElementById("recId").innerText = appNum;
+      document.getElementById("recName").innerText = name;
+      document.getElementById("recParent").innerText = parent;
+      document.getElementById("recClass").innerText = className;
+
+    } catch (err) {
+      alert("❌ ত্রুটি হয়েছে! আবার চেষ্টা করুন।");
+      console.error(err);
+    }
+  });
+</script>
+
 </body>
 </html>
